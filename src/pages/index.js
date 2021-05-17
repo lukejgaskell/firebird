@@ -1,14 +1,21 @@
 import * as React from "react"
 import * as THREE from "three"
-import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js"
-import { GUI } from "three/examples/jsm/libs/dat.gui.module.js"
-import { CSM } from "three/examples/jsm/csm/CSM.js"
-import { CSMHelper } from "three/examples/jsm/csm/CSMHelper.js"
+import loadable from "@loadable/component"
 
 const IndexPage = () => {
   const canvasRef = React.useRef()
 
   React.useEffect(() => {
+    const { OrbitControls } = loadable(() =>
+      import("three/examples/jsm/controls/OrbitControls.js")
+    )
+    const { GUI } = loadable(() =>
+      import("three/examples/jsm/libs/dat.gui.module.js")
+    )
+    const { CSM } = loadable(() => import("three/examples/jsm/csm/CSM.js"))
+    const { CSMHelper } = loadable(() =>
+      import("three/examples/jsm/csm/CSMHelper.js")
+    )
     const params = {
       orthographic: false,
       fade: false,
@@ -30,16 +37,13 @@ const IndexPage = () => {
     scene.background = new THREE.Color("#454e61")
     let camera = new THREE.PerspectiveCamera(
       70,
-      canvasRef.current.innerWidth / canvasRef.current.innerHeight,
+      window.innerWidth / window.innerHeight,
       0.1,
       5000
     )
 
     let renderer = new THREE.WebGLRenderer({ antialias: true })
-    renderer.setSize(
-      canvasRef.current.innerWidth,
-      canvasRef.current.innerHeight
-    )
+    renderer.setSize(window.innerWidth, window.innerHeight)
     canvasRef.current.appendChild(renderer.domElement)
     renderer.shadowMap.enabled = true
     renderer.shadowMap.type = THREE.PCFSoftShadowMap
@@ -212,18 +216,14 @@ const IndexPage = () => {
 
     helperFolder.open()
 
-    canvasRef.current.addEventListener("resize", function () {
-      camera.aspect =
-        canvasRef.current.innerWidth / canvasRef.current.innerHeight
+    window.addEventListener("resize", function () {
+      camera.aspect = window.innerWidth / window.innerHeight
       camera.updateProjectionMatrix()
 
       updateOrthoCamera()
       csm.updateFrustums()
 
-      renderer.setSize(
-        canvasRef.current.innerWidth,
-        canvasRef.current.innerHeight
-      )
+      renderer.setSize(window.innerWidth, window.innerHeight)
     })
 
     animate()
