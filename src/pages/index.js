@@ -1,5 +1,6 @@
 import * as React from "react"
 import { Canvas, useFrame } from "@react-three/fiber"
+import { OrbitControls } from "@react-three/drei"
 
 const IndexPage = () => {
   function Box(props) {
@@ -32,6 +33,7 @@ const IndexPage = () => {
       <pointLight position={[10, 10, 10]} />
       <Box position={[-1.2, 0, 0]} />
       <Box position={[1.2, 0, 0]} />
+      <OrbitControls />
     </Canvas>
   )
 }
