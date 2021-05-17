@@ -30,13 +30,16 @@ const IndexPage = () => {
     scene.background = new THREE.Color("#454e61")
     let camera = new THREE.PerspectiveCamera(
       70,
-      window.innerWidth / window.innerHeight,
+      canvasRef.current.innerWidth / canvasRef.current.innerHeight,
       0.1,
       5000
     )
 
     let renderer = new THREE.WebGLRenderer({ antialias: true })
-    renderer.setSize(window.innerWidth, window.innerHeight)
+    renderer.setSize(
+      canvasRef.current.innerWidth,
+      canvasRef.current.innerHeight
+    )
     canvasRef.current.appendChild(renderer.domElement)
     renderer.shadowMap.enabled = true
     renderer.shadowMap.type = THREE.PCFSoftShadowMap
@@ -209,14 +212,18 @@ const IndexPage = () => {
 
     helperFolder.open()
 
-    window.addEventListener("resize", function () {
-      camera.aspect = window.innerWidth / window.innerHeight
+    canvasRef.current.addEventListener("resize", function () {
+      camera.aspect =
+        canvasRef.current.innerWidth / canvasRef.current.innerHeight
       camera.updateProjectionMatrix()
 
       updateOrthoCamera()
       csm.updateFrustums()
 
-      renderer.setSize(window.innerWidth, window.innerHeight)
+      renderer.setSize(
+        canvasRef.current.innerWidth,
+        canvasRef.current.innerHeight
+      )
     })
 
     animate()
