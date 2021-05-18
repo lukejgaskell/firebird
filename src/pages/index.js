@@ -1,39 +1,28 @@
 import * as React from "react"
-import { Canvas, useFrame } from "@react-three/fiber"
+import { Canvas } from "@react-three/fiber"
 import { OrbitControls } from "@react-three/drei"
+import { Building } from "../components/objects/building/Building"
+import { Ground } from '../components/objects/ground/Ground'
 
 const IndexPage = () => {
-  function Box(props) {
-    // This reference will give us direct access to the THREE.Mesh object
-    const mesh = React.useRef()
-    // Set up state for the hovered and active state
-    const [hovered, setHover] = React.useState(false)
-    const [active, setActive] = React.useState(false)
-    // Subscribe this component to the render-loop, rotate the mesh every frame
-    useFrame((state, delta) => (mesh.current.rotation.x += 0.01))
-    // Return the view, these are regular Threejs elements expressed in JSX
-    return (
-      <mesh
-        {...props}
-        ref={mesh}
-        scale={active ? 1.5 : 1}
-        onClick={event => setActive(!active)}
-        onPointerOver={event => setHover(true)}
-        onPointerOut={event => setHover(false)}
-      >
-        <boxGeometry args={[1, 1, 1]} />
-        <meshStandardMaterial color={hovered ? "hotpink" : "orange"} />
-      </mesh>
-    )
-  }
 
   return (
     <Canvas style={{ height: "100vh", width: "100vw" }}>
-      <ambientLight />
-      <pointLight position={[10, 10, 10]} />
-      <Box position={[-1.2, 0, 0]} />
-      <Box position={[1.2, 0, 0]} />
-      <OrbitControls />
+      <React.Suspense fallback={null}>
+        <ambientLight />
+        <pointLight position={[10, 10, 10]} />
+        <Building position={[-1.2, 0, 0]} />
+        <Building buildingIndex={1} position={[1.2, 0, 0]} />
+        <Building position={[-3.2, 0, 0]} />
+        <Building broken position={[3.2, 0, 0]} />
+
+        <Building position={[-11.2, 0, -20]} />
+        <Building buildingIndex={1} position={[11.2, 0, -20]} />
+        <Building position={[-3.2, 0, -10]} />
+        <Building position={[3.2, 0, -10]} />
+        <Ground />
+      <OrbitControls/>
+      </React.Suspense>
     </Canvas>
   )
 }
