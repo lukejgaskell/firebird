@@ -15,19 +15,20 @@ const IndexPage = () => {
         <Sky sunPosition={[100, 20, 100]} />
         <ambientLight intensity={0.25} />
         <pointLight position={[10, 10, 10]} />
-        <Building position={[-1.2, 0, 0]} />
-        <Building buildingIndex={1} position={[1.2, 0, 0]} />
-        <Building position={[-3.2, 0, 0]} />
-        <Building broken position={[3.2, 0, 0]} />
-
-        <Building position={[-11.2, 0, -20]} />
-        <Building buildingIndex={1} position={[11.2, 0, -20]} />
-        <Building position={[-3.2, 0, -10]} />
-        <Building position={[3.2, 0, -10]} />
         <Hud position={[0, 0, -2]} />
         <Physics gravity={[0, -30, 0]}>
           <Ground position={[0, -1, 0]} />
           <Player position={[0, 2, 10]} />
+
+          <Building position={[-2.2, 0, 0]} />
+          <Building buildingIndex={1} position={[2.2, 0, 0]} />
+          <Building position={[-5.2, 0, 0]} />
+          <Building broken position={[5.2, 0, 0]} />
+
+          <Building position={[-11.2, 0, -20]} />
+          <Building buildingIndex={1} position={[11.2, 0, -20]} />
+          <Building position={[-8.2, 0, -10]} />
+          <Building position={[8.2, 0, -10]} />
         </Physics>
       </React.Suspense>
     </Canvas>

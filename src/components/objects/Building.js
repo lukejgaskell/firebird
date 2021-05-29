@@ -1,6 +1,7 @@
 import * as React from 'react'
 
 import { TextureLoader } from 'three/src/loaders/TextureLoader.js'
+import { useBox } from '@react-three/cannon'
 import { useLoader } from '@react-three/fiber'
 
 export function Building(props) {
@@ -9,6 +10,11 @@ export function Building(props) {
   const [hovered, setHover] = React.useState(false)
   const hoveredRef = React.useRef(hovered)
   hoveredRef.current = hovered
+
+  const [ref] = useBox(() => ({
+    type: 'Static',
+    position: props.position,
+  }))
 
   React.useEffect(() => {
     const timer = setInterval(() => {
@@ -25,7 +31,7 @@ export function Building(props) {
   // useFrame((state, delta) => (mesh.current.rotation.x += 0.01))
   // Return the view, these are regular Threejs elements expressed in JSX
   return (
-    <mesh {...props} scale={1.5}>
+    <mesh {...props} ref={ref} scale={1.5}>
       <boxGeometry args={[1, 1, 1]} />
       <meshStandardMaterial map={texture_1} attachArray="material" />
       <meshStandardMaterial map={texture_1} attachArray="material" />
