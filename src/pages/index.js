@@ -1,15 +1,19 @@
-import * as React from "react"
-import { Canvas } from "@react-three/fiber"
-import { OrbitControls } from "@react-three/drei"
-import { Building } from "../components/objects/building/Building"
-import { Ground } from '../components/objects/ground/Ground'
+import * as React from 'react'
+
+import { Building } from '../components/objects/Building'
+import { Canvas } from '@react-three/fiber'
+import { Ground } from '../components/objects/Ground'
+import { Hud } from '../components/objects/Hud'
+import { Physics } from '@react-three/cannon'
+import { Player } from '../components/objects/Player'
+import { Sky } from '@react-three/drei'
 
 const IndexPage = () => {
-
   return (
-    <Canvas style={{ height: "100vh", width: "100vw" }}>
+    <Canvas style={{ height: '100vh', width: '100vw' }}>
       <React.Suspense fallback={null}>
-        <ambientLight />
+        <Sky sunPosition={[100, 20, 100]} />
+        <ambientLight intensity={0.25} />
         <pointLight position={[10, 10, 10]} />
         <Building position={[-1.2, 0, 0]} />
         <Building buildingIndex={1} position={[1.2, 0, 0]} />
@@ -20,8 +24,11 @@ const IndexPage = () => {
         <Building buildingIndex={1} position={[11.2, 0, -20]} />
         <Building position={[-3.2, 0, -10]} />
         <Building position={[3.2, 0, -10]} />
-        <Ground />
-      <OrbitControls/>
+        <Hud position={[0, 0, -2]} />
+        <Physics gravity={[0, -30, 0]}>
+          <Ground position={[0, -1, 0]} />
+          <Player position={[0, 2, 10]} />
+        </Physics>
       </React.Suspense>
     </Canvas>
   )

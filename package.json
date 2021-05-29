@@ -5,6 +5,7 @@
   "version": "0.1.0",
   "author": "Kyle Mathews <mathews.kyle@gmail.com>",
   "dependencies": {
+    "@react-three/cannon": "^1.2.0",
     "@react-three/drei": "^4.3.3",
     "@react-three/fiber": "^6.1.2",
     "gatsby": "^3.4.1",
