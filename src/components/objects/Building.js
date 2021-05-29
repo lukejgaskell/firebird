@@ -12,7 +12,6 @@ export function Building(props) {
 
   React.useEffect(() => {
     const timer = setInterval(() => {
-      console.log(hoveredRef.current)
       setHover(!hoveredRef.current)
     }, 1000)
     return () => clearInterval(timer)
