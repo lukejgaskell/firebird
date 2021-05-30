@@ -3,9 +3,17 @@ import { useEffect, useState } from 'react'
 function actionByKey(key) {
   const keys = {
     KeyW: 'moveForward',
+    ArrowUp: 'moveForward',
+
     KeyS: 'moveBackward',
+    ArrowDown: 'moveBackward',
+
     KeyA: 'moveLeft',
+    ArrowLeft: 'moveLeft',
+
     KeyD: 'moveRight',
+    ArrowRight: 'moveRight',
+
     Space: 'jump',
   }
   return keys[key]
