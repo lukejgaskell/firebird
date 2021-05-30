@@ -19,7 +19,7 @@ const IndexPage = () => {
     const buildings = []
     for (let i = 0; i < numberOfBuildings; i++) {
       const x = Math.floor(Math.random() * 100) - 50
-      const y = 0
+      const y = 1
       const z = Math.floor(Math.random() * 100) - 50
       buildings.push(<Building position={[x, y, z]} />)
     }
@@ -34,7 +34,7 @@ const IndexPage = () => {
   function renderCloudScene() {
     return (
       <>
-        <Player position={[0, 2, 10]} />
+        <Player position={[0, 5, 20]} />
         {buildings}
       </>
     )
@@ -57,7 +57,7 @@ const IndexPage = () => {
           <pointLight position={[10, 10, 10]} />
           <Hud position={[0, 0, -2]} />
           <Physics gravity={[0, -30, 0]}>
-            <Ground position={[0, -1, 0]} />
+            <Ground position={[0, 0, 0]} />
             {isPlaying ? renderCloudScene() : renderHomeScene()}
           </Physics>
         </React.Suspense>
