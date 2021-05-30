@@ -1,11 +1,8 @@
-<p align="center">
-  <h1>Firebird</h1>
-</p>
-<p align="center">
-  <strong>A cloud visualizer to see and interact with cloud resources!</strong>
-</p>
+# Firebird
 
-<h3 align="center">
+<strong>A cloud visualizer to see and interact with cloud resources!</strong>
+
+<h3>
   <a href="https://github.com/lukejgaskell/firebird/blob/main/CONTRIBUTING.md">Contribute</a>
 </h3>
 
