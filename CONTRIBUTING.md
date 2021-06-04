@@ -13,6 +13,12 @@ We love your input! We want to make contributing to this project as easy and tra
 - Go to root of the project
 - npm install & npm start
 
+### Running With Docker
+- Install docker and docker-compose
+  - https://docs.docker.com/get-docker/
+  - https://docs.docker.com/compose/install/
+- run `docker-compose up`
+
 ## Our Development Process
 
 All changes happen through pull requests. Pull requests are the best way to propose changes. We actively welcome your pull requests and invite you to submit pull requests directly [here](https://github.com/lukejgaskell/firebird/pulls), and after review, these can be merged into the project.
