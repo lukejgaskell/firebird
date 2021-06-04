@@ -1,14 +1,16 @@
-import './index.css'
+import "./index.css"
 
-import * as React from 'react'
+import * as React from "react"
 
-import { Building } from '../components/objects/Building'
-import { Canvas } from '@react-three/fiber'
-import { Ground } from '../components/objects/Ground'
-import { Hud } from '../components/objects/Hud'
-import { Physics } from '@react-three/cannon'
-import { Player } from '../components/objects/Player'
-import { Sky } from '@react-three/drei'
+// import { Building } from "../components/objects/Building"
+import { Canvas } from "@react-three/fiber"
+import { Ground } from "../components/objects/Ground"
+import { Hud } from "../components/objects/Hud"
+import { Physics } from "@react-three/cannon"
+import { Player } from "../components/objects/Player"
+import { Sky } from "@react-three/drei"
+import { AppService } from "../components/buildings/AppService"
+import { SQLDatabase } from "../components/buildings/SQLDatabase"
 
 const IndexPage = () => {
   const [isPlaying, setIsPlaying] = React.useState(false)
@@ -18,10 +20,17 @@ const IndexPage = () => {
     const numberOfBuildings = Math.floor(Math.random() * 50) + 50
     const buildings = []
     for (let i = 0; i < numberOfBuildings; i++) {
+      const buildingType = i % 2
       const x = Math.floor(Math.random() * 100) - 50
-      const y = 1
+      const y = 0.5
       const z = Math.floor(Math.random() * 100) - 50
-      buildings.push(<Building position={[x, y, z]} />)
+      buildings.push(
+        buildingType ? (
+          <AppService position={[x, y, z]} key={i} />
+        ) : (
+          <SQLDatabase position={[x, y, z]} key={i} />
+        )
+      )
     }
 
     setBuildings(buildings)
@@ -50,7 +59,10 @@ const IndexPage = () => {
           </button>
         </div>
       )}
-      <Canvas style={{ height: '100vh', width: '100vw' }} camera={{ fov: 75, position: [0, 5, 20] }}>
+      <Canvas
+        style={{ height: "100vh", width: "100vw" }}
+        camera={{ fov: 75, position: [0, 5, 20] }}
+      >
         <React.Suspense fallback={null}>
           <Sky sunPosition={[100, 20, 100]} />
           <ambientLight intensity={0.25} />

@@ -1,8 +1,8 @@
-import * as React from 'react'
+import * as React from "react"
 
-import { TextureLoader } from 'three/src/loaders/TextureLoader.js'
-import { useBox } from '@react-three/cannon'
-import { useLoader } from '@react-three/fiber'
+import { TextureLoader } from "three/src/loaders/TextureLoader.js"
+import { useBox } from "@react-three/cannon"
+import { useLoader } from "@react-three/fiber"
 
 export function Building(props) {
   // This reference will give us direct access to the THREE.Mesh object
@@ -12,7 +12,7 @@ export function Building(props) {
   hoveredRef.current = hovered
 
   const [ref] = useBox(() => ({
-    type: 'Static',
+    type: "Static",
     position: props.position,
   }))
 
@@ -23,9 +23,15 @@ export function Building(props) {
     return () => clearInterval(timer)
   }, [])
 
-  const buildingTextures = ['textures/building_texture.jpg', 'textures/building_texture_2.jpg']
+  const buildingTextures = [
+    "textures/building_texture.jpg",
+    "textures/building_texture_2.jpg",
+  ]
 
-  const texture_1 = useLoader(TextureLoader, buildingTextures[props.buildingIndex || 0])
+  const texture_1 = useLoader(
+    TextureLoader,
+    buildingTextures[props.buildingIndex || 0]
+  )
 
   // Subscribe this component to the render-loop, rotate the mesh every frame
   // useFrame((state, delta) => (mesh.current.rotation.x += 0.01))
@@ -35,7 +41,10 @@ export function Building(props) {
       <boxGeometry args={[1, 1, 1]} />
       <meshStandardMaterial map={texture_1} attachArray="material" />
       <meshStandardMaterial map={texture_1} attachArray="material" />
-      <meshStandardMaterial color={hovered ? (props.broken ? 'red' : 'lightgreen') : 'white'} attachArray="material" />
+      <meshStandardMaterial
+        color={hovered ? (props.broken ? "red" : "lightgreen") : "white"}
+        attachArray="material"
+      />
       <meshStandardMaterial map={texture_1} attachArray="material" />
       <meshStandardMaterial map={texture_1} attachArray="material" />
       <meshStandardMaterial map={texture_1} attachArray="material" />
