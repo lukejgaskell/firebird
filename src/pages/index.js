@@ -9,8 +9,9 @@ import { Hud } from "../components/objects/Hud"
 import { Physics } from "@react-three/cannon"
 import { Player } from "../components/objects/Player"
 import { Sky } from "@react-three/drei"
-import { AppService } from "../components/buildings/AppService"
+import { AzureLogo } from "../components/buildings/AzureLogo"
 import { SQLDatabase } from "../components/buildings/SQLDatabase"
+import { OrbitControls } from "@react-three/drei"
 
 const IndexPage = () => {
   const [isPlaying, setIsPlaying] = React.useState(false)
@@ -26,7 +27,7 @@ const IndexPage = () => {
       const z = Math.floor(Math.random() * 100) - 50
       buildings.push(
         buildingType ? (
-          <AppService position={[x, y, z]} key={i} />
+          <AzureLogo position={[x, y, z]} key={i} />
         ) : (
           <SQLDatabase position={[x, y, z]} key={i} />
         )
@@ -43,7 +44,7 @@ const IndexPage = () => {
   function renderCloudScene() {
     return (
       <>
-        <Player position={[0, 5, 20]} />
+        {/* <Player position={[0, 5, 20]} /> */}
         {buildings}
       </>
     )
@@ -61,7 +62,7 @@ const IndexPage = () => {
       )}
       <Canvas
         style={{ height: "100vh", width: "100vw" }}
-        camera={{ fov: 75, position: [0, 5, 20] }}
+        // camera={{ fov: 75, position: [0, 5, 20] }}
       >
         <React.Suspense fallback={null}>
           <Sky sunPosition={[100, 20, 100]} />
@@ -73,6 +74,7 @@ const IndexPage = () => {
             {isPlaying ? renderCloudScene() : renderHomeScene()}
           </Physics>
         </React.Suspense>
+        <OrbitControls />
       </Canvas>
     </>
   )

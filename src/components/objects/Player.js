@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react'
 import { useFrame, useThree } from '@react-three/fiber'
 
-import { FPVControls } from './FPVControls'
+// import { FPVControls } from './FPVControls'
 // import { FPVControls } from './FPVControls'
 import { Vector3 } from 'three'
 import { useKeyboardControls } from '../hooks/useKeyboardControls'
@@ -40,7 +40,6 @@ export const Player = (props) => {
   })
   return (
     <>
-      <FPVControls />
       <mesh ref={ref} />
     </>
   )

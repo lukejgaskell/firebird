@@ -13,3 +13,7 @@ Check <a href="https://github.com/lukejgaskell/firebird/blob/main/CONTRIBUTING.m
 ## Live Site
 
 Changes that make it to `main` will be published to [Firebird](https://firebird.gaskellsolutions.com)
+
+
+
+https://muffinman.io/blog/three-js-extrude-svg-path/
