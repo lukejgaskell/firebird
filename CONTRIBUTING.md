@@ -14,6 +14,7 @@ We love your input! We want to make contributing to this project as easy and tra
 - npm install & npm start
 
 ### Running With Docker
+
 - Install docker and docker-compose
   - https://docs.docker.com/get-docker/
   - https://docs.docker.com/compose/install/
@@ -44,5 +45,5 @@ Great Feature Requests tend to have:
 
 ## License
 
-By contributing to DogeHouse, you agree that your contributions will be licensed
+By contributing to Firebird, you agree that your contributions will be licensed
 under the [LICENSE file](LICENSE).
